@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          6.8.7
-Release:          3.10%{?dist}
+Release:          3.11%{?dist}
 Summary:          Java-based testing framework
 # org/testng/remote/strprotocol/AbstractRemoteTestRunnerClient.java is CPL
 License:          ASL 2.0 and CPL
@@ -19,17 +19,17 @@ Source1:          clean-tarball.sh
 
 BuildArch:        noarch
 
-BuildRequires:    maven30-mvn(com.beust:jcommander) >= 1.27
+BuildRequires:    %{?scl_prefix}mvn(com.beust:jcommander) >= 1.27
 BuildRequires:    %{?scl_prefix_java_common}mvn(com.google.guava:guava)
-BuildRequires:    maven30-mvn(com.google.inject:guice)
+BuildRequires:    %{?scl_prefix}mvn(com.google.inject:guice)
 BuildRequires:    %{?scl_prefix_java_common}mvn(junit:junit)
 BuildRequires:    %{?scl_prefix_java_common}mvn(org.apache.ant:ant)
-BuildRequires:    maven30-mvn(org.beanshell:bsh)
-BuildRequires:    maven30-mvn(org.sonatype.oss:oss-parent:pom:)
-BuildRequires:    maven30-mvn(org.yaml:snakeyaml)
+BuildRequires:    %{?scl_prefix}mvn(org.beanshell:bsh)
+BuildRequires:    %{?scl_prefix}mvn(org.sonatype.oss:oss-parent:pom:)
+BuildRequires:    %{?scl_prefix}mvn(org.yaml:snakeyaml)
 
 BuildRequires:    %{?scl_prefix_java_common}maven-local
-BuildRequires:    maven30-maven-plugin-bundle
+BuildRequires:    %{?scl_prefix}maven-plugin-bundle
 
 %description
 TestNG is a testing framework inspired from JUnit and NUnit but introducing
@@ -45,7 +45,7 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # build fix for new guice
@@ -81,13 +81,13 @@ mv -f ANNOUNCEMENT.txt.utf8 ANNOUNCEMENT.txt
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -- -Dgpg.skip=true
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -99,6 +99,9 @@ set -e -x
 %doc LICENSE.txt
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 6.8.7-3.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 6.8.7-3.10
 - maven33 rebuild
 
