@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          6.8.7
-Release:          3.11%{?dist}
+Release:          3.12%{?dist}
 Summary:          Java-based testing framework
 # org/testng/remote/strprotocol/AbstractRemoteTestRunnerClient.java is CPL
 License:          ASL 2.0 and CPL
@@ -26,7 +26,7 @@ BuildRequires:    %{?scl_prefix_java_common}mvn(junit:junit)
 BuildRequires:    %{?scl_prefix_java_common}mvn(org.apache.ant:ant)
 BuildRequires:    %{?scl_prefix}mvn(org.beanshell:bsh)
 BuildRequires:    %{?scl_prefix}mvn(org.sonatype.oss:oss-parent:pom:)
-BuildRequires:    %{?scl_prefix}mvn(org.yaml:snakeyaml)
+BuildRequires:    %{?scl_prefix_java_common}mvn(org.yaml:snakeyaml)
 
 BuildRequires:    %{?scl_prefix_java_common}maven-local
 BuildRequires:    %{?scl_prefix}maven-plugin-bundle
@@ -99,6 +99,9 @@ set -e -x
 %doc LICENSE.txt
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 6.8.7-3.12
+- Build against snakeyaml from rh-java-common
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 6.8.7-3.11
 - maven33 rebuild #2
 
