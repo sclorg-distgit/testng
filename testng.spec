@@ -5,7 +5,7 @@
 
 Name:           %{?scl_prefix}testng
 Version:        6.9.12
-Release:        5.1%{?dist}
+Release:        5.2%{?dist}
 Summary:        Java-based testing framework
 License:        ASL 2.0
 URL:            http://testng.org/
@@ -98,6 +98,9 @@ cp -p ./src/main/java/*.dtd.html ./src/main/resources/.
 %license LICENSE.txt
 
 %changelog
+* Thu Jun 22 2017 Michael Simacek <msimacek@redhat.com> - 6.9.12-5.2
+- Mass rebuild 2017-06-22
+
 * Wed Jun 21 2017 Java Maintainers <java-maint@redhat.com> - 6.9.12-5.1
 - Automated package import and SCL-ization
 
